@@ -14,12 +14,8 @@ fn silu_f32(c: &mut Criterion) {
     group.bench_function("rust_scalar", |b| b.iter(|| rust_scalar(input)));
     group.bench_function("linalg", |b| b.iter(|| linalg(input)));
     #[cfg(target_arch = "aarch64")]
-    group.bench_function("linalg-asm-compose", |b| {
+    group.bench_function("linalg-asm", |b| {
         b.iter(|| tract_linalg::arm64::arm64simd_silu_f32_4n::run(input, ()))
-    });
-    #[cfg(target_arch = "aarch64")]
-    group.bench_function("linalg-asm-fused", |b| {
-        b.iter(|| tract_linalg::arm64::arm64simd_silu_f32_4n_fused::run(input, ()))
     });
 }
 

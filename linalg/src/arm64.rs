@@ -455,7 +455,8 @@ pub fn plug(ops: &mut Ops) {
     }
     ops.leaky_relu_f32 = Box::new(|| arm64simd_leaky_relu_f32_8n::ew());
     ops.hardswish_f32 = Box::new(|| arm64simd_hardswish_f32_8n::ew());
-    ops.silu_f32 = Box::new(|| arm64simd_silu_f32_4n_fused::ew());
+    ops.silu_f32 = Box::new(|| arm64simd_silu_f32_4n::ew());
+    ops.silu_f16 = Box::new(|| arm64simd_silu_f16_8n::ew());
     ops.gelu_f32 = Box::new(|| arm64simd_gelu_f32_4n_fused::ew());
     ops.sigmoid_f32 = Box::new(|| arm64simd_sigmoid_f32_4n::ew());
     ops.tanh_f32 = Box::new(|| arm64simd_tanh_f32_4n::ew());

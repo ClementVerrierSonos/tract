@@ -7,8 +7,6 @@ mod max;
 mod min;
 mod panel_extract;
 mod rms_norm;
-mod silu;
-mod silu_fused;
 mod softmax;
 mod sum;
 mod unicast;
@@ -21,8 +19,6 @@ pub use leaky_relu::arm64simd_leaky_relu_f32_8n;
 pub use max::arm64simd_max_f32_16n;
 pub use min::arm64simd_min_f32_16n;
 pub use rms_norm::rms_norm_f32 as arm64simd_rms_norm_f32;
-pub use silu::arm64simd_silu_f32_4n;
-pub use silu_fused::arm64simd_silu_f32_4n_fused;
 pub use softmax::arm64simd_softmax2_fastcompact_f32_16n;
 pub use sum::arm64simd_sum_f32_16n;
 pub use unicast::*;
@@ -138,3 +134,5 @@ pub fn plug(ops: &mut Ops) {
 
 tanh_impl!(f32, arm64simd_tanh_f32_4n, 4, 4, true);
 sigmoid_impl!(f32, arm64simd_sigmoid_f32_4n, 4, 4, true);
+silu_impl!(f32, arm64simd_silu_f32_4n, 4, 4, true);
+silu_impl!(f16, arm64simd_silu_f16_8n, 8, 8, true);
